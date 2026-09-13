@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+:root {
+  --font-display: "Bodoni Moda", serif;
+  --font-body: "Manrope", sans-serif;
+
+  --color-ink: #221f1d;
+  --color-stone: #f5f2ec;
+  --color-wine: #6e2a38;
+  --color-wine-dark: #501e29;
+  --color-sand: #dcd3c3;
+  --color-line: #dad3c5;
+}
+
+@theme inline {
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --color-ink: var(--color-ink);
+  --color-stone: var(--color-stone);
+  --color-wine: var(--color-wine);
+  --color-wine-dark: var(--color-wine-dark);
+  --color-sand: var(--color-sand);
+  --color-line: var(--color-line);
+}
+
+body {
+  font-family: var(--font-body);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
