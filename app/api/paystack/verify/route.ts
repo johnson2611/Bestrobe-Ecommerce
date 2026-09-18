@@ -143,15 +143,9 @@ export async function GET(req: NextRequest) {
     }
 
     return NextResponse.json({ paid, amount, reference: data.data.reference });
-  } catch (err) {
-    // TEMPORARY DEBUG LOGGING — remove this catch block's detail once the
-    // real error is found, and revert to the generic message below.
-    console.error("Verify route error:", err);
+  } catch {
     return NextResponse.json(
-      {
-        error: "Something went wrong verifying the transaction.",
-        debug: err instanceof Error ? err.message : String(err),
-      },
+      { error: "Something went wrong verifying the transaction." },
       { status: 500 },
     );
   }
