@@ -4,6 +4,7 @@ const PAYSTACK_SECRET_KEY = process.env.PAYSTACK_SECRET_KEY;
 
 type CheckoutItem = {
   name: string;
+  size: string;
   price: number;
   quantity: number;
 };
@@ -12,7 +13,7 @@ export async function POST(req: NextRequest) {
   if (!PAYSTACK_SECRET_KEY) {
     return NextResponse.json(
       { error: "Paystack secret key is not configured on the server." },
-      { status: 500 }
+      { status: 500 },
     );
   }
 
@@ -21,14 +22,15 @@ export async function POST(req: NextRequest) {
     const { email, items } = body as { email: string; items: CheckoutItem[] };
 
     if (!email || !items?.length) {
-      return NextResponse.json({ error: "Missing email or items." }, { status: 400 });
+      return NextResponse.json(
+        { error: "Missing email or items." },
+        { status: 400 },
+      );
     }
 
-    // Recompute the total server-side from the item list rather than trusting
-    // a client-sent amount, so a tampered request can't under-charge.
     const serverCalculatedTotal = items.reduce(
       (sum, item) => sum + item.price * item.quantity,
-      0
+      0,
     );
 
     const paystackResponse = await fetch(
@@ -46,15 +48,18 @@ export async function POST(req: NextRequest) {
           callback_url: `${req.nextUrl.origin}/success`,
           metadata: { items },
         }),
-      }
+      },
     );
 
     const data = await paystackResponse.json();
 
     if (!paystackResponse.ok || !data.status) {
       return NextResponse.json(
-        { error: data.message ?? "Paystack failed to initialize the transaction." },
-        { status: 502 }
+        {
+          error:
+            data.message ?? "Paystack failed to initialize this transaction.",
+        },
+        { status: 502 },
       );
     }
 
@@ -65,7 +70,7 @@ export async function POST(req: NextRequest) {
   } catch {
     return NextResponse.json(
       { error: "Something went wrong initializing the transaction." },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

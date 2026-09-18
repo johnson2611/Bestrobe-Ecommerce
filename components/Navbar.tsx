@@ -9,15 +9,30 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-40 border-b border-[var(--color-line)] bg-[var(--color-stone)]/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link href="/" className="font-display text-2xl tracking-tight text-[var(--color-ink)]">
-          Bestrobe
+        <Link
+          href="/"
+          className="font-display text-2xl tracking-tight text-[var(--color-ink)]"
+        >
+          BestRobe
         </Link>
         <nav className="flex items-center gap-8 text-sm">
-          <Link href="/shop" className="hidden sm:inline hover:text-[var(--color-wine)] transition-colors">
+          <Link
+            href="/shop"
+            className="hidden sm:inline hover:text-[var(--color-wine)] transition-colors"
+          >
             Shop
           </Link>
-          <Link href="/shop?filter=new" className="hidden sm:inline hover:text-[var(--color-wine)] transition-colors">
+          <Link
+            href="/shop?filter=new"
+            className="hidden sm:inline hover:text-[var(--color-wine)] transition-colors"
+          >
             New Arrivals
+          </Link>
+          <Link
+            href="/orders"
+            className="hidden sm:inline hover:text-[var(--color-wine)] transition-colors"
+          >
+            Order History
           </Link>
           <Link
             href="/cart"

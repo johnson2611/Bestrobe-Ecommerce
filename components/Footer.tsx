@@ -33,7 +33,15 @@ const socials = [
     href: "https://instagram.com",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
-        <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="1.5" />
+        <rect
+          x="3"
+          y="3"
+          width="18"
+          height="18"
+          rx="5"
+          stroke="currentColor"
+          strokeWidth="1.5"
+        />
         <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.5" />
         <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
       </svg>
@@ -79,7 +87,7 @@ export default function Footer() {
         <div className="grid gap-10 md:grid-cols-2 md:gap-16">
           <div>
             <Link href="/" className="font-display text-2xl text-white">
-              Your Brand
+              BestRobe
             </Link>
             <p className="mt-4 max-w-sm text-sm text-white/60">
               Considered essentials, built to last. Cut straight, made to age
@@ -103,9 +111,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-display text-lg text-white">
-              Join the list
-            </h3>
+            <h3 className="font-display text-lg text-white">Join the list</h3>
             <p className="mt-2 text-sm text-white/60">
               Early access to drops, restocks, and 10% off your first order.
             </p>
@@ -161,7 +167,7 @@ export default function Footer() {
         {/* Bottom: legal */}
         <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-white/50">
-            © {new Date().getFullYear()} Your Brand. All rights reserved.
+            © {new Date().getFullYear()} BestRobe. All rights reserved.
           </p>
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-white/50">
             <Link href="/privacy" className="hover:text-white">
