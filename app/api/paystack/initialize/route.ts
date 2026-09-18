@@ -112,13 +112,12 @@ export async function POST(req: NextRequest) {
       0,
     );
 
-    // Prefer an explicit site URL over the request's own origin. On Netlify,
-    // req.nextUrl.origin can resolve to a per-deploy URL (the long hash-prefixed
-    // one) instead of your main domain, which sends customers to the wrong place
-    // after payment. Netlify sets URL to your site's real, stable domain — we
-    // fall back to the request origin only for local development, where that
-    // env var isn't set.
-    const siteUrl = process.env.URL ?? req.nextUrl.origin;
+    // We deliberately use an env var we set ourselves (SITE_URL) rather than
+    // relying on Netlify's automatic URL variable or the request's own origin —
+    // both of those can resolve to a per-deploy URL instead of the real domain
+    // in some Netlify runtime contexts. Setting this explicitly removes any
+    // ambiguity about where customers land after paying.
+    const siteUrl = process.env.SITE_URL ?? req.nextUrl.origin;
 
     const paystackResponse = await fetch(
       "https://api.paystack.co/transaction/initialize",
