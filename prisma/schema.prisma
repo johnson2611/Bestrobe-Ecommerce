@@ -1,6 +1,3 @@
-// Prisma schema for order persistence, using Neon (Postgres).
-// Run `npx prisma db push` after setting DATABASE_URL to create these tables.
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,8 +11,8 @@ model Order {
   id           String      @id @default(cuid())
   reference    String      @unique // Paystack transaction reference
   email        String
-  amount       Int         // total paid, in NGN (whole naira, not kobo)
-  status       String      // "success" | "failed" (mirrors Paystack's verify response)
+  amount       Int        
+  status       String      
   createdAt    DateTime    @default(now())
   items        OrderItem[]
 
@@ -28,6 +25,6 @@ model OrderItem {
   order      Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
   name       String
   size       String
-  price      Int     // unit price in NGN at time of purchase
+  price      Int     
   quantity   Int
 }

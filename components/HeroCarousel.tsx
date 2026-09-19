@@ -11,8 +11,8 @@ type Slide = {
   subtitle: string;
   cta: string;
   href: string;
-  gradient: string; // fallback / overlay stand-in
-  image?: string; // filename in /public/images
+  gradient: string;
+  image?: string;
 };
 
 const slides: Slide[] = [
@@ -84,7 +84,7 @@ export default function HeroCarousel() {
           transition={{ duration: 0.6, ease: "easeInOut" }}
           className="absolute inset-0 flex items-center overflow-hidden"
         >
-          {/* Background image OR gradient fallback */}
+
           {slide.image ? (
             <img
               src={`/images/${slide.image}`}
@@ -98,10 +98,10 @@ export default function HeroCarousel() {
             />
           )}
 
-          {/* Readability overlay (dark left → transparent right) */}
+
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent" />
 
-          {/* Content */}
+
           <div className="relative mx-auto w-full max-w-6xl px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -127,16 +127,15 @@ export default function HeroCarousel() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Dot navigation */}
+
       <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 gap-2">
         {slides.map((s, i) => (
           <button
             key={s.id}
             onClick={() => goTo(i)}
             aria-label={`Go to slide ${i + 1}`}
-            className={`h-2 rounded-full transition-all ${
-              i === index ? "w-8 bg-white" : "w-2 bg-white/40 hover:bg-white/70"
-            }`}
+            className={`h-2 rounded-full transition-all ${i === index ? "w-8 bg-white" : "w-2 bg-white/40 hover:bg-white/70"
+              }`}
           />
         ))}
       </div>

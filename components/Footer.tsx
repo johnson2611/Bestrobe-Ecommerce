@@ -74,7 +74,6 @@ export default function Footer() {
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.trim()) return;
-    // TODO: wire up to your newsletter API (e.g. /api/newsletter)
     setSubscribed(true);
     setEmail("");
     setTimeout(() => setSubscribed(false), 3000);
@@ -83,7 +82,7 @@ export default function Footer() {
   return (
     <footer className="bg-[var(--color-ink)] text-white/80">
       <div className="mx-auto max-w-6xl px-6 py-16">
-        {/* Top: brand + newsletter */}
+
         <div className="grid gap-10 md:grid-cols-2 md:gap-16">
           <div>
             <Link href="/" className="font-display text-2xl text-white">
@@ -141,7 +140,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Middle: link columns */}
+
         <div className="mt-14 grid grid-cols-2 gap-8 border-t border-white/10 pt-10 sm:grid-cols-3 md:gap-12">
           {Object.entries(footerLinks).map(([heading, links]) => (
             <div key={heading}>
@@ -164,7 +163,7 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Bottom: legal */}
+
         <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-white/50">
             © {new Date().getFullYear()} BestRobe. All rights reserved.
